@@ -18,14 +18,14 @@
     <div id="root">
         <div class="background p-5">
             <div class="container-fluid h-100">
-                <div class="row gx-0 h-100 rounded-2 border">
+                <div class="row gx-0  h-100 rounded-2 border">
                     <!-- NOTE Sezione Sinistra -->
-                    <div class="col-4 border-end bg-light">
+                    <div class="col-4 border-end bg-light h-100 d-flex flex-column">
                         <!-- NOTE Account -->
                         <div class="bg-white p-3 d-flex justify-content-between align-items-center">
                             <div>
-                                <img class="rounded-circle profile-picture" src="./assets/img/avatar_io.jpg" alt="" />
-                                <span class="ms-3 fs-5">Nome basico</span>
+                                <img class="rounded-circle profile-picture" :src=`./assets/img/avatar${user.img}.jpg` alt="" />
+                                <span class="ms-3 fs-5">{{user.nome}}</span>
                             </div>
                             <div class="p-1">
                                 <i class="text-black-50 mx-2 fs-3 fa-solid fa-circle-notch"></i>
@@ -55,31 +55,31 @@
                             <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat..">
                         </div>
                         <!-- NOTE Lista Chat -->
-                        <div class="bg-light">
-                            <ul class="list-unstyled">
-                                <li class="d-flex p-3 border-bottom">
+                        <div class="bg-light flex-shrink-1 h-100 overflow-auto">
+                            <ul class="list-unstyled  ">
+                                <li class="d-flex p-3 border-bottom" :class="(activeChat == contact)?'active':''" v-for="(contact, i) in contacts" @click="goActive(i)"  >
                                     <div>
-                                        <img class="profile-picture rounded-circle" src="./assets/img/avatar_1.jpg"
+                                        <img class="profile-picture rounded-circle" :src=`./assets/img/avatar${contact.avatar}.jpg`
                                             alt="">
                                     </div>
                                     <div class="d-flex flex-column justify-content-center ms-4">
-                                        <span class="fw-bold f-3">Nome Brutto</span>
-                                        <span class="text-black-50">Ultimo messaggio inviato</span>
+                                        <span class="fw-bold f-3">{{contact.name}}</span>
+                                        <span class="text-black-50">{{contact.messages[(contact.messages.length-1)].message}}</span>
                                     </div>
                                     <div class="ms-auto">
-                                        <span class="text-black-50">12:00</span>
+                                        <span class="text-black-50">{{contact.messages[(contact.messages.length-1)].date}}</span>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <!-- NOTE Sezione destra -->
-                    <div class="col-8 d-flex flex-column border-end border-1">
+                    <div class="col-8 d-flex flex-column border-end border-1" >
                         <!-- NOTE Account Chat -->
                         <div class="bg-white p-3 d-flex justify-content-between align-items-center">
                             <div>
-                                <img class="rounded-circle profile-picture" src="./assets/img/avatar_io.jpg" alt="" />
-                                <span class="ms-3 fs-5">Nome basico</span>
+                                <img class="rounded-circle profile-picture" :src=`./assets/img/avatar${activeChat.avatar}.jpg` alt="" />
+                                <span class="ms-3 fs-5">{{activeChat.name}}</span>
                             </div>
                             <div class="p-1">
                                 <i class="text-black-50 mx-2 fs-3 fa-solid fa-magnifying-glass"></i>
@@ -88,16 +88,11 @@
                             </div>
                         </div>
                         <!-- NOTE Sezione Chat -->
-                        <div class="chat-background h-100 ">
+                        <div class="chat-background h-100">
                             <ul class="list-unstyled d-flex flex-column">
-                                <li class="sent px-3 py-2 rounded-3">
-                                    <span>Testo prova</span>
-                                </li>
-                                <li class="sent px-3 py-2 rounded-3">
-                                    <span>Testo prova</span>
-                                </li>
-                                <li class="received px-3 py-2 rounded-3">
-                                    <span>Testo prova</span>
+                                <li class="px-3 py-2 rounded-3" v-for="message in activeChat.messages" :class="(message.status == 'sent')?'sent':'received'">
+                                    <span>{{message.message}}</span>
+                                    <span class="text-black-50">12:00</span>
                                 </li>
                             </ul>
                         </div>
@@ -116,8 +111,9 @@
             </div>
         </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="./assets/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </body>
 
 </html>

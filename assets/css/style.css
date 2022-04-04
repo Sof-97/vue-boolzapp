@@ -41,3 +41,7 @@
 .rounded-3 {
 	border-radius: 0.7rem !important;
 }
+
+.active{
+    background-color: #ccc;
+}

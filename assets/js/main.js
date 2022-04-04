@@ -166,10 +166,18 @@ var app = new Vue(
                 }
             ],
             user: {
-                nome: 'Sofia',
+                nome: 'Gigi Finizio',
                 img: '_io'
+            },
+            activeChat: [],
+        },
+        methods: {
+            goActive: function(index){
+                this.activeChat = this.contacts[index];
             }
-
+        },
+        created(){
+            this.activeChat = this.contacts[0];
         }
     }
 )
