@@ -1,13 +1,43 @@
-#root{
-    height: 100vh;
+:root {
+	--bs-info-rgb: 153, 218, 253 !important;
 }
 
-.background{
-    height: 100%;
-    background-image: linear-gradient(to bottom,
-    #359589 0px,
-    #359589 15vh,
-    #D8DBD9 15vh,
-    #D8DBD9 100vh
-    );
+#root {
+	height: 100vh;
+}
+
+.background {
+	height: 100%;
+	background-image: linear-gradient(
+		to bottom,
+		#359589 0px,
+		#359589 15vh,
+		#d8dbd9 15vh,
+		#d8dbd9 100vh
+	);
+}
+
+.profile-picture {
+	width: 80px;
+	height: 80px;
+}
+
+.chat-background {
+	background-image: url("../img/mine.jpg");
+}
+
+.sent {
+	background-color: #d8f8bf;
+    align-self: flex-end;
+    margin: 1rem 1rem 1rem 0 ;
+}
+
+.received {
+    background-color: #feffff;
+    align-self: flex-start;
+    margin: 1rem 1rem 1rem ;
+}
+
+.rounded-3 {
+	border-radius: 0.7rem !important;
 }
