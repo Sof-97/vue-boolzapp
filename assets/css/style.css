@@ -1,0 +1,13 @@
+#root{
+    height: 100vh;
+}
+
+.background{
+    height: 100%;
+    background-image: linear-gradient(to bottom,
+    #359589 0px,
+    #359589 15vh,
+    #D8DBD9 15vh,
+    #D8DBD9 100vh
+    );
+}
