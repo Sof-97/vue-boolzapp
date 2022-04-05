@@ -169,15 +169,12 @@ var app = new Vue(
                 nome: 'Gigi Finizio',
                 img: '_io'
             },
-            activeChat: [],
+            currentChat: 0,
         },
         methods: {
             goActive: function(index){
-                this.activeChat = this.contacts[index];
+                this.currentChat = index;
             }
-        },
-        created(){
-            this.activeChat = this.contacts[0];
         }
     }
 )

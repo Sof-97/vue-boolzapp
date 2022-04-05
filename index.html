@@ -57,7 +57,7 @@
                         <!-- NOTE Lista Chat -->
                         <div class="bg-light flex-shrink-1 h-100 overflow-auto">
                             <ul class="list-unstyled  ">
-                                <li class="d-flex p-3 border-bottom" :class="(activeChat == contact)?'active':''" v-for="(contact, i) in contacts" @click="goActive(i)"  >
+                                <li class="d-flex p-3 border-bottom" :class="(i == currentChat)?'active':''" v-for="(contact, i) in contacts" role="button" @click="goActive(i)">
                                     <div>
                                         <img class="profile-picture rounded-circle" :src=`./assets/img/avatar${contact.avatar}.jpg`
                                             alt="">
@@ -78,8 +78,8 @@
                         <!-- NOTE Account Chat -->
                         <div class="bg-white p-3 d-flex justify-content-between align-items-center">
                             <div>
-                                <img class="rounded-circle profile-picture" :src=`./assets/img/avatar${activeChat.avatar}.jpg` alt="" />
-                                <span class="ms-3 fs-5">{{activeChat.name}}</span>
+                                <img class="rounded-circle profile-picture" :src=`./assets/img/avatar${contacts[currentChat].avatar}.jpg` alt="" />
+                                <span class="ms-3 fs-5">{{contacts[currentChat].name}}</span>
                             </div>
                             <div class="p-1">
                                 <i class="text-black-50 mx-2 fs-3 fa-solid fa-magnifying-glass"></i>
@@ -90,7 +90,7 @@
                         <!-- NOTE Sezione Chat -->
                         <div class="chat-background h-100">
                             <ul class="list-unstyled d-flex flex-column">
-                                <li class="px-3 py-2 rounded-3" v-for="message in activeChat.messages" :class="(message.status == 'sent')?'sent':'received'">
+                                <li class="px-3 py-2 rounded-3" v-for="(message, index) in contacts[currentChat].messages" :class="(message.status == 'sent')?'sent':'received'">
                                     <span>{{message.message}}</span>
                                     <span class="text-black-50">12:00</span>
                                 </li>
