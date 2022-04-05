@@ -171,6 +171,7 @@ var app = new Vue(
             },
             currentChat: 0,
             sendInput: '',
+            search: ''
         },
         methods: {
             goActive: function(index){
@@ -178,21 +179,26 @@ var app = new Vue(
             },
             newMessage: function(){
                 let newSentMessage = {
-                    date: '12:00',
+                    date: this.getDate(),
                     message: this.sendInput,
                     status: 'sent'
                 }
                 this.contacts[this.currentChat].messages.push(newSentMessage)
-                sendInput = ''
-                setTimeout(this.basicAnswer(), 2000)
+                this.sendInput = ''
+                setTimeout(() => this.basicAnswer(), 2000)
             },
             basicAnswer: function(){
+                this.getDate()
                 let basic = {
-                    date: '',
+                    date: this.getDate(),
                     message: 'Se proprio devo..',
                     status: 'received'
                 }
                 this.contacts[this.currentChat].messages.push(basic)
+            },
+            getDate: function(){
+                const now = dayjs().format('DD/MM/YYYY HH:mm:ss')
+                return now
             }
         }
     }
