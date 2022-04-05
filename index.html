@@ -91,7 +91,7 @@
                         <div class="chat-background h-100">
                             <ul class="list-unstyled d-flex flex-column">
                                 <li class="px-3 py-2 rounded-3" v-for="(message, index) in contacts[currentChat].messages" :class="(message.status == 'sent')?'sent':'received'">
-                                    <span>{{message.message}}</span>
+                                    <span class="me-3">{{message.message}}</span>
                                     <span class="text-black-50">12:00</span>
                                 </li>
                             </ul>
@@ -101,7 +101,7 @@
                             <div class="px-3 py-2">
                                 <i class="fa-solid fa-face-laugh-beam text-black-50 fs-3"></i>
                             </div>
-                            <input class="form-control rounded-3" placeholder="Scrivi un messaggio.." type="text">
+                            <input @keyup.enter="newMessage" v-model="sendInput" class="form-control rounded-3" placeholder="Scrivi un messaggio.." type="text">
                             <div class="px-3 py-2">
                                 <i class="fa-solid fa-microphone text-black-50 fs-3"></i>
                             </div>

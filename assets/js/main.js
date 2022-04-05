@@ -170,10 +170,29 @@ var app = new Vue(
                 img: '_io'
             },
             currentChat: 0,
+            sendInput: '',
         },
         methods: {
             goActive: function(index){
                 this.currentChat = index;
+            },
+            newMessage: function(){
+                let newSentMessage = {
+                    date: '12:00',
+                    message: this.sendInput,
+                    status: 'sent'
+                }
+                this.contacts[this.currentChat].messages.push(newSentMessage)
+                sendInput = ''
+                setTimeout(this.basicAnswer(), 2000)
+            },
+            basicAnswer: function(){
+                let basic = {
+                    date: '',
+                    message: 'Se proprio devo..',
+                    status: 'received'
+                }
+                this.contacts[this.currentChat].messages.push(basic)
             }
         }
     }
