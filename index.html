@@ -108,7 +108,7 @@
                                     <div class="bg-light rounded-3 border dropdown" :key="index">
                                         <ul class="list-unstyled">
                                             <li class="p-2 border-bottom">Info messaggio</li>
-                                            <li class="p-2">Cancella messaggio</li>
+                                            <li @click="remove(index)" class="p-2">Cancella messaggio</li>
                                         </ul>
                                     </div>
                                 </li>

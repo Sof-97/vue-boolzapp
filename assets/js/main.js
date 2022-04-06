@@ -212,6 +212,13 @@ var app = new Vue(
                         element.visible = false
                     }
                 });
+            },
+            remove: function(i){
+                if(i === 0 ){
+                    this.contacts[this.currentChat].messages = []
+                } else {
+                    this.contacts[this.currentChat].messages.splice(i, 1)
+                }
             }
     }
 }
