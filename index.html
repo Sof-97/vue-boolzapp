@@ -16,7 +16,7 @@
 
 <body>
     <div id="root">
-        <div  class="background p-5">
+        <div class="background p-5">
             <div class="container-fluid h-100">
                 <div class="row gx-0  h-100 rounded-2 border">
                     <!-- NOTE Sezione Sinistra -->
@@ -58,9 +58,6 @@
                         </div>
                         <!-- NOTE Lista Chat -->
                         <div class="bg-light flex-shrink-1 h-100 overflow-auto">
-                            <div v-if="(contacts[currentChat].messages.length) < 1">
-                                GIGI
-                            </div>
                             <ul class="list-unstyled v-else ">
                                 <li v-if="contact.visible" class="d-flex p-3 border-bottom"
                                     :class="(i == currentChat)?'active':''" v-for="(contact, i) in contacts"
@@ -71,12 +68,13 @@
                                     </div>
                                     <div class="d-flex flex-column justify-content-center ms-4">
                                         <span class="fw-bold f-3">{{contact.name}}</span>
-                                        <span
-                                            class="text-black-50">{{contact.messages[(contact.messages.length-1)].message}}</span>
+                                        <span class="text-black-50"
+                                            v-if="contact.messages.length > 0">{{contact.messages[(contact.messages.length-1)].message}}</span>
+                                        <span v-else class="text-black-50">Nessun messaggio...</span>
                                     </div>
                                     <div class="ms-auto">
-                                        <span
-                                            class="text-black-50">{{contact.messages[(contact.messages.length-1)].date}}</span>
+                                        <span class="text-black-50"
+                                            v-if="contact.messages.length > 0">{{contact.messages[(contact.messages.length-1)].date}}</span>
                                     </div>
                                 </li>
                             </ul>
@@ -97,7 +95,7 @@
                                 <i class="text-black-50 mx-2 fs-3 fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </div>
-                        <!-- TODO Sezione Chat -->
+                        <!-- NOTE Sezione Chat -->
                         <div class="chat-background h-100 overflow-auto">
                             <ul class="list-unstyled d-flex flex-column">
                                 <li class="d-flex px-3 py-2 rounded-3 position-relative"
@@ -108,13 +106,18 @@
                                         <p class=" text-end text-black-50 fs-7">{{message.date}}</p>
                                     </div>
                                     <i @click="dropdownToggle(index)" class="fa-solid fa-angle-down arrow"></i>
-                                    <div class="bg-light rounded-3 border dropdown" v-if="(menuState) && (menuIndex == index)">
+                                    <div class="bg-light rounded-3 border dropdown"
+                                        v-if="(menuState) && (menuIndex == index)">
                                         <ul class="list-unstyled">
                                             <li class="p-2 border-bottom">Info messaggio</li>
                                             <li @click="remove(index)" class="p-2">Cancella messaggio</li>
                                         </ul>
                                     </div>
                                 </li>
+                                <div class="align-self-center bg-dark p-3 text-light rounded-3 opacity-50 mt-3"
+                                    v-if="contacts[currentChat].messages.length < 1">
+                                    <p>Qui non c'è ancora nessun messaggio.. </p>
+                                </div>
                             </ul>
                         </div>
                         <!-- NOTE Invio messaggio -->

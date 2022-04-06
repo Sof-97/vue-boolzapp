@@ -177,7 +177,8 @@ var app = new Vue(
         },
         methods: {
             goActive: function (index) {
-                this.currentChat = index;
+                this.currentChat = index
+                this.menuState = false
             },
             newMessage: function () {
                 let newSentMessage = {
@@ -212,8 +213,8 @@ var app = new Vue(
                     }
                 });
             },
-            remove: function (i) {
-                this.contacts[this.currentChat].messages.splice(i, 1)
+            remove: function () {
+                this.contacts[this.currentChat].messages.splice(this.menuIndex, 1)
                 this.menuState = false
             },
             dropdownToggle: function(i){
