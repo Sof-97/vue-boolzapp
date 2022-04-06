@@ -45,3 +45,20 @@
 .active{
     background-color: #ccc;
 }
+
+p{
+	margin: 0!important;
+}
+
+.fs-7{
+	font-size: 0.8rem;
+}
+
+.arrow{
+	opacity: 0;
+	transition: all 0.25s ;
+}
+
+li:hover .arrow{
+	opacity: 1;
+}

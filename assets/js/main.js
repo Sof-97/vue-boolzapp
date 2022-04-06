@@ -1,6 +1,6 @@
 var app = new Vue(
     {
-        el:'#root',
+        el: '#root',
         data: {
             contacts: [
                 {
@@ -171,13 +171,13 @@ var app = new Vue(
             },
             currentChat: 0,
             sendInput: '',
-            search: ''
+            search: '',
         },
         methods: {
-            goActive: function(index){
+            goActive: function (index) {
                 this.currentChat = index;
             },
-            newMessage: function(){
+            newMessage: function () {
                 let newSentMessage = {
                     date: this.getDate(),
                     message: this.sendInput,
@@ -187,7 +187,7 @@ var app = new Vue(
                 this.sendInput = ''
                 setTimeout(() => this.basicAnswer(), 2000)
             },
-            basicAnswer: function(){
+            basicAnswer: function () {
                 this.getDate()
                 let basic = {
                     date: this.getDate(),
@@ -196,10 +196,28 @@ var app = new Vue(
                 }
                 this.contacts[this.currentChat].messages.push(basic)
             },
-            getDate: function(){
+            getDate: function () {
                 const now = dayjs().format('DD/MM/YYYY HH:mm:ss')
                 return now
+            },
+            dropdownToggle: function(){
+                this.toggle()
+                setTimeout(this.toggle, 3000)
+            },
+            toggle: function(){
+                this.dropdown = !this.dropdown
+            },
+            searchMode: function(){
+                this.contacts.forEach(element => {
+                    element.visible = true
+                    let x = this.search.toUpperCase()
+                    let y = element.name.toUpperCase()
+                    if(!(y.includes(x))){
+                        element.visible = false
+                    }
+                    
+                });
             }
-        }
     }
+}
 )
