@@ -58,8 +58,12 @@
                         </div>
                         <!-- NOTE Lista Chat -->
                         <div class="bg-light flex-shrink-1 h-100 overflow-auto">
-                            <ul class="list-unstyled  ">
-                                <li v-if="contact.visible"
+                            <div v-if="(contacts[currentChat].messages.length) == 0">
+                                GIGI
+                            </div>
+                            <ul class="list-unstyled v-else ">
+                                <li :key="i"
+                                    v-if="contact.visible"
                                     class="d-flex p-3 border-bottom" :class="(i == currentChat)?'active':''"
                                     v-for="(contact, i) in contacts" role="button" @click="goActive(i)">
                                     <div>

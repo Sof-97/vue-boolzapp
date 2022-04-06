@@ -200,9 +200,6 @@ var app = new Vue(
                 const now = dayjs().format('DD/MM/YYYY HH:mm:ss')
                 return now
             },
-            dropdownToggle: function(i){
-                console.log("gigi");
-            },
             searchMode: function(){
                 this.contacts.forEach(element => {
                     element.visible = true
@@ -214,12 +211,10 @@ var app = new Vue(
                 });
             },
             remove: function(i){
-                if(i === 0 ){
-                    this.contacts[this.currentChat].messages = []
-                } else {
-                    this.contacts[this.currentChat].messages.splice(i, 1)
-                }
-            }
+                this.contacts[this.currentChat].messages.splice(i, 1)
+                
+            },
+
     }
 }
 )
