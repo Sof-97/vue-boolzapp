@@ -172,6 +172,8 @@ var app = new Vue(
             currentChat: 0,
             sendInput: '',
             search: '',
+            menuState: false,
+            menuIndex: -1,
         },
         methods: {
             goActive: function (index) {
@@ -200,21 +202,24 @@ var app = new Vue(
                 const now = dayjs().format('DD/MM/YYYY HH:mm:ss')
                 return now
             },
-            searchMode: function(){
+            searchMode: function () {
                 this.contacts.forEach(element => {
                     element.visible = true
                     let x = this.search.toUpperCase()
                     let y = element.name.toUpperCase()
-                    if(!(y.includes(x))){
+                    if (!(y.includes(x))) {
                         element.visible = false
                     }
                 });
             },
-            remove: function(i){
+            remove: function (i) {
                 this.contacts[this.currentChat].messages.splice(i, 1)
-                
+                this.menuState = false
             },
-
+            dropdownToggle: function(i){
+                this.menuIndex = i
+                this.menuState = !this.menuState
+            }
+        }
     }
-}
 )

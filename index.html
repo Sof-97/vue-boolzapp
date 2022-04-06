@@ -16,7 +16,7 @@
 
 <body>
     <div id="root">
-        <div class="background p-5">
+        <div  class="background p-5">
             <div class="container-fluid h-100">
                 <div class="row gx-0  h-100 rounded-2 border">
                     <!-- NOTE Sezione Sinistra -->
@@ -58,14 +58,13 @@
                         </div>
                         <!-- NOTE Lista Chat -->
                         <div class="bg-light flex-shrink-1 h-100 overflow-auto">
-                            <div v-if="(contacts[currentChat].messages.length) == 0">
+                            <div v-if="(contacts[currentChat].messages.length) < 1">
                                 GIGI
                             </div>
                             <ul class="list-unstyled v-else ">
-                                <li :key="i"
-                                    v-if="contact.visible"
-                                    class="d-flex p-3 border-bottom" :class="(i == currentChat)?'active':''"
-                                    v-for="(contact, i) in contacts" role="button" @click="goActive(i)">
+                                <li v-if="contact.visible" class="d-flex p-3 border-bottom"
+                                    :class="(i == currentChat)?'active':''" v-for="(contact, i) in contacts"
+                                    role="button" @click="goActive(i)">
                                     <div>
                                         <img class="profile-picture rounded-circle"
                                             :src=`./assets/img/avatar${contact.avatar}.jpg` alt="">
@@ -94,7 +93,7 @@
                             </div>
                             <div class="p-1">
                                 <i class="text-black-50 mx-2 fs-3 fa-solid fa-magnifying-glass"></i>
-                                <i class="text-black-50 mx-2 fs-3 fa-solid fa-paperclip"></i> 
+                                <i class="text-black-50 mx-2 fs-3 fa-solid fa-paperclip"></i>
                                 <i class="text-black-50 mx-2 fs-3 fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </div>
@@ -109,7 +108,7 @@
                                         <p class=" text-end text-black-50 fs-7">{{message.date}}</p>
                                     </div>
                                     <i @click="dropdownToggle(index)" class="fa-solid fa-angle-down arrow"></i>
-                                    <div class="bg-light rounded-3 border dropdown" :key="index">
+                                    <div class="bg-light rounded-3 border dropdown" v-if="(menuState) && (menuIndex == index)">
                                         <ul class="list-unstyled">
                                             <li class="p-2 border-bottom">Info messaggio</li>
                                             <li @click="remove(index)" class="p-2">Cancella messaggio</li>

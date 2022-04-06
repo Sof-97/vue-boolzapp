@@ -64,7 +64,6 @@ li:hover .arrow{
 }
 
 .dropdown{
-	/* display: none; */
 	z-index: 1;
 	min-width: 150px;
 	position: absolute;
