@@ -200,12 +200,8 @@ var app = new Vue(
                 const now = dayjs().format('DD/MM/YYYY HH:mm:ss')
                 return now
             },
-            dropdownToggle: function(){
-                this.toggle()
-                setTimeout(this.toggle, 3000)
-            },
-            toggle: function(){
-                this.dropdown = !this.dropdown
+            dropdownToggle: function(i){
+                console.log("gigi");
             },
             searchMode: function(){
                 this.contacts.forEach(element => {
@@ -215,7 +211,6 @@ var app = new Vue(
                     if(!(y.includes(x))){
                         element.visible = false
                     }
-                    
                 });
             }
     }
